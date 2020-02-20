@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head') %>
+</head>
+
+<body>
+
+  <form class="card p-3" method="POST" action="<%= '/api/student/'+student.usn %>">
+    <h3 class="mb-2">Edit your details</h3>
+    <div class="form-group">
+      <label for="fname">First name</label>
+      <input type="text" class="form-control" id="fname" name="fname" value="<%= student.fname %>" required />
+    </div>
+    <div class="form-group">
+      <label for="lname">Last name</label>
+      <input type="text" class="form-control" id="lname" name="lname" value="<%= student.lname %>" required />
+    </div>
+    <div class="form-group">
+      <label for="department">New Department</label>
+      <select class="form-control" id="password" name="department" required>
+        <option value="Computer Science">Computer Science
+        </option>
+        <option value="Information Science">Information
+          Science</option>
+        <option value="Mechanical">Mechanical</option>
+        <option value="Electrical and Electronics">
+          Electrical and Electronics</option>
+        <option value="Electronics and Communication">Electronics and Communication</option>
+        <option value="Bio technology">Bio technology</option>
+        <option value="Civil">Civil</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sem">Update Sem</label>
+      <input type="number" name="sem" id="sem" min="1" max="8" value="<%= student.sem %>" required />
+    </div>
+    <div class="form-group">
+      <label for="usn">Update USN</label>
+      <input type="text" id="usn" name="usn" value="<%= student.usn %>" aria-describedby="usnreadme" required />
+      <small id="usnreadme">USN must be of the form 4nm17cs0xx</small>
+    </div>
+    <button type="submit" class="btn btn-outline-primary w-25">Submit</button>
+    <a class="btn btn-outline-danger mt-2 w-25" href="/students">Cancel update</a>
+  </form>
+
+  <%- include('partials/scripts') %>
+</body>
+
+</html>

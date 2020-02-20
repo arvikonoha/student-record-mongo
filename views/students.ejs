@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head') %>
+</head>
+
+<body>
+  <a class="btn btn-outline-primary m-2" href="/">Insert new record</a>
+  <% if(students.length === 0) { %>
+  <div class="card"><%= "There are no records" %>
+    <% } %>
+    <% students.forEach(student => { %>
+    <div class="card m-3" style="max-width: 540px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="<%= student.imageurl %>" class="card-img" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Student details <a href="<%= '/student/'+student.usn %>"
+                class="badge badge-primary mr-2">Edit</a></h5>
+            <p class="card-text">Hello I'm <%= student.fname + " "+student.lname %>. Im in <%= student.department %>
+              department. This is my <%= student.sem %>th semester in the college. My usn is <%= student.usn %>
+            </p>
+            <form method="POST" enctype="multipart/form-data" action="api/image/<%= student.usn %>">
+              <div class="form-group">
+                <label for="stdimg">Update image</label>
+                <input type="file" class="form-control-file" name="stdimg" id="stdimg" required>
+                <button type="submit" class="btn btn-primary btn-sm mt-1">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  <%- include('partials/scripts') %>
+</body>
+
+</html>
